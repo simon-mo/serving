@@ -45,7 +45,7 @@ function get_switch_user_cmd() {
   local gid=$(id -g)
   local username=$(id -n -u)
   local groupname=$(id -n -g)
-  local cmdline="groupadd -f ${groupname} && groupmod -o -g ${gid} ${groupname}"
+  local cmdline="groupadd -fg ${groupname} && groupmod -o -g ${gid} ${groupname}"
   cmdline+="; id -u ${username} &>/dev/null || useradd ${username} && usermod -o -u ${uid} -g ${gid} ${username}"
   cmdline+="; chroot --userspec=${username} / "
   echo "${cmdline}"
